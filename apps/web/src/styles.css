@@ -453,7 +453,7 @@ button:hover {
   }
 
   .navList {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .metrics,
@@ -483,6 +483,431 @@ button:hover {
 
   .metrics,
   .itemGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mobileStudio {
+  background: #0f172a;
+  border-radius: 8px;
+  color: white;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.mobileStudioHeader {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.mobileStudioHeader h2 {
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+}
+
+.mobileGrid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.phoneWorkbench {
+  display: grid;
+  gap: 12px;
+}
+
+.screenTabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.screenTabs button {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.76);
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 8px 11px;
+}
+
+.screenTabs button.active {
+  background: #0d9488;
+  border-color: #0d9488;
+  color: white;
+}
+
+.phoneFrame {
+  background: #050816;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 34px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  margin: 0 auto;
+  max-width: 390px;
+  min-height: 760px;
+  overflow: hidden;
+  padding: 12px;
+  width: 100%;
+}
+
+.phoneStatus {
+  align-items: center;
+  color: rgba(255, 255, 255, 0.84);
+  display: flex;
+  font-size: 0.72rem;
+  font-weight: 800;
+  justify-content: space-between;
+  padding: 6px 18px 10px;
+}
+
+.phoneScreen {
+  animation: phoneFade 260ms ease;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(13, 148, 136, 0.3), transparent 28%),
+    linear-gradient(160deg, #0f172a, #111827 48%, #1e1b4b);
+  border-radius: 26px;
+  min-height: 700px;
+  overflow: hidden;
+  padding: 18px;
+}
+
+.phoneLight {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.phoneTitle {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.phoneTitle h3 {
+  font-size: 1.35rem;
+}
+
+.languagePill,
+.phoneChip,
+.phoneBadge {
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 7px 10px;
+}
+
+.languagePill {
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+.phoneChip {
+  background: rgba(79, 70, 229, 0.16);
+  color: #c7d2fe;
+}
+
+.phoneBadge {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.phoneLogo {
+  align-items: center;
+  animation: logoPulse 1200ms ease infinite alternate;
+  background: white;
+  border-radius: 24px;
+  color: #0f172a;
+  display: flex;
+  font-size: 3.1rem;
+  font-weight: 950;
+  height: 138px;
+  justify-content: center;
+  margin: 210px auto 22px;
+  width: 138px;
+}
+
+.walkthroughArt,
+.bannerArt,
+.mediaHero {
+  background:
+    linear-gradient(135deg, rgba(13, 148, 136, 0.34), rgba(79, 70, 229, 0.34)),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 18px);
+  border-radius: 22px;
+  min-height: 190px;
+}
+
+.paginationDots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.paginationDots span {
+  background: rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  height: 8px;
+  width: 8px;
+}
+
+.paginationDots span.active {
+  background: #0d9488;
+  width: 24px;
+}
+
+.gatewayActions,
+.wizardStack,
+.phoneList,
+.settingsList {
+  display: grid;
+  gap: 12px;
+}
+
+.glassAction,
+.categoryCard,
+.metricBlock,
+.orderRow,
+.inventoryRow,
+.summaryCard,
+.checkoutSheet,
+.accountRow,
+.reviewCard {
+  background: rgba(30, 41, 59, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.glassAction.primary,
+.categoryCard.active {
+  background: #0d9488;
+}
+
+.wizardInput {
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  color: white;
+  min-height: 52px;
+  padding: 12px 14px;
+}
+
+.domainInput {
+  align-items: center;
+  background: #1e293b;
+  border-radius: 14px;
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+.domainInput input {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: white;
+  min-height: 40px;
+  padding: 0;
+}
+
+.uploadBox {
+  align-items: center;
+  border: 1.5px dashed rgba(255, 255, 255, 0.34);
+  border-radius: 18px;
+  display: flex;
+  min-height: 150px;
+  justify-content: center;
+}
+
+.dashboardGrid,
+.catalogGrid,
+.paymentGrid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.metricBlock strong {
+  display: block;
+  font-size: 1.25rem;
+  margin-top: 8px;
+}
+
+.bottomTabs {
+  align-items: center;
+  backdrop-filter: blur(18px);
+  background: rgba(15, 23, 42, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+  min-height: 58px;
+}
+
+.bottomTabs span.active {
+  color: #a5b4fc;
+  font-weight: 900;
+}
+
+.searchBar {
+  background: #e2e8f0;
+  border-radius: 14px;
+  color: #64748b;
+  margin-bottom: 12px;
+  padding: 12px 14px;
+}
+
+.phoneLight .inventoryRow,
+.phoneLight .summaryCard,
+.phoneLight .checkoutSheet,
+.phoneLight .accountRow,
+.phoneLight .reviewCard {
+  background: white;
+  border-color: #e2e8f0;
+  color: #111827;
+}
+
+.productCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  color: #111827;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.productImage {
+  align-items: center;
+  background: linear-gradient(135deg, #ccfbf1, #ddd6fe);
+  border-radius: 14px;
+  display: flex;
+  font-weight: 950;
+  height: 112px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.stepper {
+  align-items: center;
+  background: #eef2ff;
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  margin: 14px 0;
+  padding: 10px 14px;
+}
+
+.buttonDeck {
+  display: grid;
+  gap: 10px;
+}
+
+.outlineButton {
+  background: transparent;
+  border-color: #0d9488;
+  color: #0d9488;
+}
+
+.slotGrid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.slotGrid span,
+.durationRail span {
+  background: #e0f2fe;
+  border-radius: 999px;
+  color: #075985;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 9px 10px;
+  text-align: center;
+}
+
+.durationRail {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.timeline {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.timeline span {
+  border-left: 3px solid #0d9488;
+  padding-left: 12px;
+}
+
+.shimmer {
+  animation: shimmer 1300ms linear infinite;
+  background: linear-gradient(90deg, #e2e8f0 0%, #f8fafc 45%, #e2e8f0 90%);
+  background-size: 240% 100%;
+  border-radius: 12px;
+  height: 18px;
+}
+
+.premiumRail {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 18px;
+}
+
+.premiumRail article {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.premiumRail span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+@keyframes phoneFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoPulse {
+  from {
+    opacity: 0.82;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -240% 0;
+  }
+}
+
+@media (max-width: 1080px) {
+  .mobileGrid,
+  .premiumRail {
     grid-template-columns: 1fr;
   }
 }

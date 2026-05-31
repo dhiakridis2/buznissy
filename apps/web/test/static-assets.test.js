@@ -11,6 +11,8 @@ describe("web frontend shell", () => {
     assert.match(html, /Storefront preview/);
     assert.match(html, /Mock checkout/);
     assert.match(html, /Commerce OS/);
+    assert.match(html, /Mobile App Studio/);
+    assert.match(html, /Owner app and customer app layouts/);
   });
 
   it("connects to the local API", async () => {
@@ -20,5 +22,8 @@ describe("web frontend shell", () => {
     assert.match(script, /auth\/register/);
     assert.match(script, /auth\/login/);
     assert.match(script, /payment-intents/);
+    assert.match(script, /ownerScreens/);
+    assert.match(script, /customerScreens/);
+    assert.match(script, /renderMobileScreens/);
   });
 });
