@@ -27,6 +27,7 @@ const ownerScreenTabs = document.querySelector("#ownerScreenTabs");
 const customerScreenTabs = document.querySelector("#customerScreenTabs");
 const ownerPhoneScreen = document.querySelector("#ownerPhoneScreen");
 const customerPhoneScreen = document.querySelector("#customerPhoneScreen");
+const logoMarkup = '<img src="/assets/buznissy-logo.png" alt="Buznissy logo" />';
 
 async function api(path, options = {}) {
   const response = await fetch(`${apiBaseUrl}${path}`, {
@@ -200,7 +201,7 @@ const ownerScreens = [
     id: "splash",
     label: "Splash",
     html: `
-      <div class="phoneLogo">B</div>
+      <div class="phoneLogo">${logoMarkup}</div>
       <div class="phoneTitle" style="justify-content:center;text-align:center">
         <div>
           <h3>BUZNISSY</h3>
@@ -339,7 +340,7 @@ const customerScreens = [
     label: "Home",
     html: `
       <div class="phoneLight" style="min-height:700px;margin:-18px;padding:18px">
-        <div class="phoneTitle"><span class="brandMark">B</span><h3>Al Noor Gifts</h3><span>Cart 0</span></div>
+        <div class="phoneTitle"><span class="brandMark">${logoMarkup}</span><h3>Al Noor Gifts</h3><span>Cart 0</span></div>
         <div class="bannerArt"></div>
         <div class="catalogGrid" style="margin-top:14px">
           <div class="productCard"><div class="productImage">G</div><strong>Gift Box</strong><p>OMR 12.000</p></div>

@@ -105,13 +105,20 @@ h3 {
 
 .brandMark {
   align-items: center;
-  background: var(--gold);
+  background: rgba(255, 255, 255, 0.92);
   border-radius: 8px;
   color: #10231d;
   display: inline-flex;
   height: 38px;
   justify-content: center;
   width: 38px;
+}
+
+.brandMark img {
+  display: block;
+  height: 30px;
+  object-fit: contain;
+  width: 30px;
 }
 
 .navList {
@@ -618,7 +625,7 @@ button:hover {
 .phoneLogo {
   align-items: center;
   animation: logoPulse 1200ms ease infinite alternate;
-  background: white;
+  background: rgba(255, 255, 255, 0.94);
   border-radius: 24px;
   color: #0f172a;
   display: flex;
@@ -628,6 +635,13 @@ button:hover {
   justify-content: center;
   margin: 210px auto 22px;
   width: 138px;
+}
+
+.phoneLogo img {
+  display: block;
+  height: 108px;
+  object-fit: contain;
+  width: 108px;
 }
 
 .walkthroughArt,

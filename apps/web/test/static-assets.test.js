@@ -13,6 +13,7 @@ describe("web frontend shell", () => {
     assert.match(html, /Commerce OS/);
     assert.match(html, /Mobile App Studio/);
     assert.match(html, /Owner app and customer app layouts/);
+    assert.match(html, /buznissy-logo\.png/);
   });
 
   it("connects to the local API", async () => {
@@ -25,5 +26,6 @@ describe("web frontend shell", () => {
     assert.match(script, /ownerScreens/);
     assert.match(script, /customerScreens/);
     assert.match(script, /renderMobileScreens/);
+    assert.match(script, /logoMarkup/);
   });
 });
