@@ -1,0 +1,14 @@
+{
+  "name": "buznissy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start:api": "node apps/api/src/index.js",
+    "start:web": "node apps/web/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

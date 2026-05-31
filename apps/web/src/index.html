@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buznissy MVP</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Buznissy MVP</p>
+        <h1>Store builder and customer storefront</h1>
+      </div>
+      <div class="status" id="apiStatus">Checking API</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <div class="panelHeader">
+          <h2>Owner Workspace</h2>
+          <span>Create store, products, and services</span>
+        </div>
+
+        <form id="storeForm" class="form">
+          <label>
+            Store name
+            <input name="name" value="Al Noor Gifts" required />
+          </label>
+          <label>
+            Category
+            <select name="category">
+              <option value="products">Products</option>
+              <option value="services">Services</option>
+              <option value="both">Both</option>
+            </select>
+          </label>
+          <label>
+            Description
+            <textarea name="description">Gifts and handmade items from Oman</textarea>
+          </label>
+          <button type="submit">Create store</button>
+        </form>
+
+        <div class="split">
+          <form id="productForm" class="form compact">
+            <h3>Add product</h3>
+            <input name="name" placeholder="Product name" value="Gift Box" required />
+            <input name="price" type="number" min="0" step="0.001" value="12" required />
+            <input name="stock" type="number" min="0" value="20" required />
+            <button type="submit">Add product</button>
+          </form>
+
+          <form id="serviceForm" class="form compact">
+            <h3>Add service</h3>
+            <input name="name" placeholder="Service name" value="Gift wrapping" required />
+            <select name="durationMinutes">
+              <option value="30">30 min</option>
+              <option value="60">1 hour</option>
+              <option value="120">2 hours</option>
+            </select>
+            <input name="price" type="number" min="0" step="0.001" value="5" required />
+            <button type="submit">Add service</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel storefront">
+        <div class="panelHeader">
+          <h2>Customer Storefront</h2>
+          <span id="storeSlug">No store yet</span>
+        </div>
+
+        <div class="hero">
+          <p class="eyebrow">Featured store</p>
+          <h2 id="storeName">Create a store to preview it</h2>
+          <p id="storeDescription">The customer storefront will appear here.</p>
+        </div>
+
+        <h3>Products</h3>
+        <div class="grid" id="products"></div>
+
+        <h3>Services</h3>
+        <div class="grid" id="services"></div>
+
+        <div class="checkout">
+          <button id="mockCheckout">Mock checkout</button>
+          <p id="checkoutResult">Payment is intentionally mocked for this MVP stage.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
