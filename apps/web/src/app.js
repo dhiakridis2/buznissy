@@ -1,7 +1,12 @@
 const apiBaseUrl = "http://127.0.0.1:4000";
 let activeStore = null;
+let activeOwner = null;
+let accessToken = null;
 
 const apiStatus = document.querySelector("#apiStatus");
+const authState = document.querySelector("#authState");
+const registerForm = document.querySelector("#registerForm");
+const loginForm = document.querySelector("#loginForm");
 const storeForm = document.querySelector("#storeForm");
 const productForm = document.querySelector("#productForm");
 const serviceForm = document.querySelector("#serviceForm");
@@ -36,6 +41,12 @@ function formData(form) {
 
 function money(value) {
   return `${Number(value || 0).toFixed(3)} OMR`;
+}
+
+function setOwnerSession(session) {
+  activeOwner = session.owner;
+  accessToken = session.accessToken;
+  authState.textContent = `Signed in as ${activeOwner.fullName}`;
 }
 
 function renderItems(target, items, emptyText, render) {
@@ -88,8 +99,30 @@ async function checkApi() {
   }
 }
 
+registerForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const session = await api("/auth/register", {
+    method: "POST",
+    body: JSON.stringify(formData(registerForm)),
+  });
+  setOwnerSession(session);
+});
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const session = await api("/auth/login", {
+    method: "POST",
+    body: JSON.stringify(formData(loginForm)),
+  });
+  setOwnerSession(session);
+});
+
 storeForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  if (!accessToken) {
+    checkoutResult.textContent = "Register or login as owner first.";
+    return;
+  }
   activeStore = await api("/stores", {
     method: "POST",
     body: JSON.stringify(formData(storeForm)),

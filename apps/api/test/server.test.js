@@ -41,6 +41,44 @@ describe("api server", () => {
     assert.equal(response.body.status, "ok");
   });
 
+  it("registers and logs in an owner", async () => {
+    const registered = await requestJson(baseUrl, "/auth/register", {
+      method: "POST",
+      body: JSON.stringify({
+        fullName: "Dhia Kridis",
+        email: "dhia@example.com",
+        password: "password123",
+      }),
+    });
+    const loggedIn = await requestJson(baseUrl, "/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: "dhia@example.com",
+        password: "password123",
+      }),
+    });
+
+    assert.equal(registered.status, 201);
+    assert.equal(registered.body.owner.email, "dhia@example.com");
+    assert.equal(registered.body.owner.passwordHash, undefined);
+    assert.equal(typeof registered.body.accessToken, "string");
+    assert.equal(loggedIn.status, 200);
+    assert.equal(loggedIn.body.owner.id, registered.body.owner.id);
+  });
+
+  it("rejects invalid owner credentials", async () => {
+    const response = await requestJson(baseUrl, "/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: "nobody@example.com",
+        password: "password123",
+      }),
+    });
+
+    assert.equal(response.status, 401);
+    assert.equal(response.body.code, "INVALID_CREDENTIALS");
+  });
+
   it("creates and reads a store", async () => {
     const created = await requestJson(baseUrl, "/stores", {
       method: "POST",

@@ -18,6 +18,30 @@
     <main class="layout">
       <section class="panel">
         <div class="panelHeader">
+          <h2>Owner Access</h2>
+          <span id="authState">Not signed in</span>
+        </div>
+
+        <div class="split authSplit">
+          <form id="registerForm" class="form compact">
+            <h3>Register owner</h3>
+            <input name="fullName" placeholder="Full name" value="Dhia Kridis" required />
+            <input name="email" type="email" placeholder="Email" value="dhia@example.com" required />
+            <input name="password" type="password" placeholder="Password" value="password123" required />
+            <button type="submit">Register</button>
+          </form>
+
+          <form id="loginForm" class="form compact">
+            <h3>Login owner</h3>
+            <input name="email" type="email" placeholder="Email" value="dhia@example.com" required />
+            <input name="password" type="password" placeholder="Password" value="password123" required />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panelHeader">
           <h2>Owner Workspace</h2>
           <span>Create store, products, and services</span>
         </div>

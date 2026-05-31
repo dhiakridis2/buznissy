@@ -1,8 +1,12 @@
 import { createServer as createHttpServer } from "node:http";
+import { createAuthService } from "./domain/auth.js";
 import { createStoreService } from "./domain/stores.js";
 import { readJsonBody, sendCors, sendJson } from "./http/json.js";
 
-export function createApiServer({ storeService = createStoreService() } = {}) {
+export function createApiServer({
+  authService = createAuthService({ tokenSecret: process.env.JWT_SECRET }),
+  storeService = createStoreService(),
+} = {}) {
   return createHttpServer(async (request, response) => {
     const url = new URL(request.url, "http://localhost");
 
@@ -19,6 +23,18 @@ export function createApiServer({ storeService = createStoreService() } = {}) {
           status: "ok",
           service: "buznissy-api",
         });
+      }
+
+      if (request.method === "POST" && url.pathname === "/auth/register") {
+        const payload = await readJsonBody(request);
+        const result = authService.register(payload);
+        return sendJson(response, result.status, result.ok ? result.data : result.error);
+      }
+
+      if (request.method === "POST" && url.pathname === "/auth/login") {
+        const payload = await readJsonBody(request);
+        const result = authService.login(payload);
+        return sendJson(response, result.status, result.ok ? result.data : result.error);
       }
 
       if (request.method === "POST" && url.pathname === "/stores") {

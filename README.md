@@ -50,6 +50,8 @@ The frontend defaults to `http://localhost:3000`.
 ## First API Endpoints
 
 - `GET /health`
+- `POST /auth/register`
+- `POST /auth/login`
 - `POST /stores`
 - `GET /stores/:slug`
 - `POST /stores/:slug/products`

@@ -6,6 +6,7 @@ describe("web frontend shell", () => {
   it("contains owner and customer MVP surfaces", async () => {
     const html = await readFile(new URL("../src/index.html", import.meta.url), "utf8");
 
+    assert.match(html, /Owner Access/);
     assert.match(html, /Owner Workspace/);
     assert.match(html, /Customer Storefront/);
     assert.match(html, /Mock checkout/);
@@ -15,6 +16,8 @@ describe("web frontend shell", () => {
     const script = await readFile(new URL("../src/app.js", import.meta.url), "utf8");
 
     assert.match(script, /http:\/\/127\.0\.0\.1:4000/);
+    assert.match(script, /auth\/register/);
+    assert.match(script, /auth\/login/);
     assert.match(script, /payment-intents/);
   });
 });
