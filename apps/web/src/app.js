@@ -13,8 +13,14 @@ const serviceForm = document.querySelector("#serviceForm");
 const storeSlug = document.querySelector("#storeSlug");
 const storeName = document.querySelector("#storeName");
 const storeDescription = document.querySelector("#storeDescription");
-const products = document.querySelector("#products");
-const services = document.querySelector("#services");
+const products = document.querySelector("#productList");
+const services = document.querySelector("#serviceList");
+const productMetric = document.querySelector("#productMetric");
+const serviceMetric = document.querySelector("#serviceMetric");
+const salesMetric = document.querySelector("#salesMetric");
+const storeStatusMetric = document.querySelector("#storeStatusMetric");
+const productCount = document.querySelector("#productCount");
+const serviceCount = document.querySelector("#serviceCount");
 const mockCheckout = document.querySelector("#mockCheckout");
 const checkoutResult = document.querySelector("#checkoutResult");
 
@@ -47,13 +53,14 @@ function setOwnerSession(session) {
   activeOwner = session.owner;
   accessToken = session.accessToken;
   authState.textContent = `Signed in as ${activeOwner.fullName}`;
+  checkoutResult.textContent = "Owner session ready.";
 }
 
 function renderItems(target, items, emptyText, render) {
   target.innerHTML = "";
 
   if (items.length === 0) {
-    target.innerHTML = `<div class="item"><span>${emptyText}</span></div>`;
+    target.innerHTML = `<div class="item"><div class="itemMedia">+</div><span>${emptyText}</span></div>`;
     return;
   }
 
@@ -80,22 +87,29 @@ async function refreshStorefront() {
   storeDescription.textContent = activeStore.description || "No description yet.";
 
   renderItems(products, productList, "No products yet.", (product) => {
-    return `<strong>${product.name}</strong><span>${money(product.price)} - Stock ${product.stock}</span>`;
+    return `<div class="itemMedia">${product.name.slice(0, 1).toUpperCase()}</div><strong>${product.name}</strong><span>${money(product.price)} - Stock ${product.stock}</span>`;
   });
 
   renderItems(services, serviceList, "No services yet.", (service) => {
-    return `<strong>${service.name}</strong><span>${money(service.price)} - ${service.durationMinutes} min</span>`;
+    return `<div class="itemMedia">${service.name.slice(0, 1).toUpperCase()}</div><strong>${service.name}</strong><span>${money(service.price)} - ${service.durationMinutes} min</span>`;
   });
+
+  productMetric.textContent = String(productList.length);
+  serviceMetric.textContent = String(serviceList.length);
+  productCount.textContent = `${productList.length} item${productList.length === 1 ? "" : "s"}`;
+  serviceCount.textContent = `${serviceList.length} item${serviceList.length === 1 ? "" : "s"}`;
+  salesMetric.textContent = money(productList.reduce((total, item) => total + Number(item.price || 0), 0));
+  storeStatusMetric.textContent = activeStore.status;
 }
 
 async function checkApi() {
   try {
     await api("/health");
     apiStatus.textContent = "API connected";
-    apiStatus.classList.add("ok");
+    apiStatus.closest(".sidebarStatus").classList.add("ok");
   } catch {
     apiStatus.textContent = "API offline";
-    apiStatus.classList.remove("ok");
+    apiStatus.closest(".sidebarStatus").classList.remove("ok");
   }
 }
 
@@ -127,6 +141,7 @@ storeForm.addEventListener("submit", async (event) => {
     method: "POST",
     body: JSON.stringify(formData(storeForm)),
   });
+  checkoutResult.textContent = `${activeStore.name} is ready.`;
   await refreshStorefront();
 });
 
@@ -142,6 +157,7 @@ productForm.addEventListener("submit", async (event) => {
     method: "POST",
     body: JSON.stringify(formData(productForm)),
   });
+  checkoutResult.textContent = "Product added to storefront.";
   await refreshStorefront();
 });
 
@@ -157,6 +173,7 @@ serviceForm.addEventListener("submit", async (event) => {
     method: "POST",
     body: JSON.stringify(formData(serviceForm)),
   });
+  checkoutResult.textContent = "Service added to storefront.";
   await refreshStorefront();
 });
 

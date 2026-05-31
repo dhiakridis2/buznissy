@@ -7,9 +7,10 @@ describe("web frontend shell", () => {
     const html = await readFile(new URL("../src/index.html", import.meta.url), "utf8");
 
     assert.match(html, /Owner Access/);
-    assert.match(html, /Owner Workspace/);
-    assert.match(html, /Customer Storefront/);
+    assert.match(html, /Store Setup/);
+    assert.match(html, /Storefront preview/);
     assert.match(html, /Mock checkout/);
+    assert.match(html, /Commerce OS/);
   });
 
   it("connects to the local API", async () => {

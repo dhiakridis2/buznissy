@@ -3,116 +3,245 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Buznissy MVP</title>
+    <title>Buznissy Commerce Console</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div>
-        <p class="eyebrow">Buznissy MVP</p>
-        <h1>Store builder and customer storefront</h1>
-      </div>
-      <div class="status" id="apiStatus">Checking API</div>
-    </header>
+    <div class="appShell">
+      <aside class="sidebar">
+        <a class="brand" href="/">
+          <span class="brandMark">B</span>
+          <span>Buznissy</span>
+        </a>
 
-    <main class="layout">
-      <section class="panel">
-        <div class="panelHeader">
-          <h2>Owner Access</h2>
-          <span id="authState">Not signed in</span>
+        <nav class="navList" aria-label="Main navigation">
+          <a class="active" href="#overview">Overview</a>
+          <a href="#store">Store</a>
+          <a href="#products">Products</a>
+          <a href="#services">Services</a>
+          <a href="#checkout">Checkout</a>
+        </nav>
+
+        <div class="sidebarStatus">
+          <span class="statusDot"></span>
+          <span id="apiStatus">Checking API</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar" id="overview">
+          <div>
+            <p class="eyebrow">Commerce OS</p>
+            <h1>Launch a store in minutes</h1>
+          </div>
+          <div class="accountPill" id="authState">Not signed in</div>
+        </header>
+
+        <section class="metrics" aria-label="Store metrics">
+          <article class="metric">
+            <span>Total sales</span>
+            <strong id="salesMetric">0.000 OMR</strong>
+          </article>
+          <article class="metric">
+            <span>Products</span>
+            <strong id="productMetric">0</strong>
+          </article>
+          <article class="metric">
+            <span>Services</span>
+            <strong id="serviceMetric">0</strong>
+          </article>
+          <article class="metric">
+            <span>Status</span>
+            <strong id="storeStatusMetric">Draft</strong>
+          </article>
+        </section>
+
+        <div class="mainGrid">
+          <section class="surface authSurface">
+            <div class="sectionHeader">
+              <div>
+                <p class="eyebrow">Owner Access</p>
+                <h2>Account</h2>
+              </div>
+              <span class="badge">Secure area</span>
+            </div>
+
+            <div class="authGrid">
+              <form id="registerForm" class="formBlock">
+                <h3>Register owner</h3>
+                <label>
+                  Full name
+                  <input name="fullName" placeholder="Full name" value="Dhia Kridis" required />
+                </label>
+                <label>
+                  Email
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    value="dhia@example.com"
+                    required
+                  />
+                </label>
+                <label>
+                  Password
+                  <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value="password123"
+                    required
+                  />
+                </label>
+                <button type="submit">Register</button>
+              </form>
+
+              <form id="loginForm" class="formBlock">
+                <h3>Login owner</h3>
+                <label>
+                  Email
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    value="dhia@example.com"
+                    required
+                  />
+                </label>
+                <label>
+                  Password
+                  <input
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    value="password123"
+                    required
+                  />
+                </label>
+                <button type="submit">Login</button>
+              </form>
+            </div>
+          </section>
+
+          <section class="surface" id="store">
+            <div class="sectionHeader">
+              <div>
+                <p class="eyebrow">Store Setup</p>
+                <h2>Brand profile</h2>
+              </div>
+              <span class="badge" id="storeSlug">No store yet</span>
+            </div>
+
+            <form id="storeForm" class="formBlock">
+              <label>
+                Store name
+                <input name="name" value="Al Noor Gifts" required />
+              </label>
+              <label>
+                Category
+                <select name="category">
+                  <option value="products">Products</option>
+                  <option value="services">Services</option>
+                  <option value="both">Both</option>
+                </select>
+              </label>
+              <label>
+                Description
+                <textarea name="description">Gifts and handmade items from Oman</textarea>
+              </label>
+              <button type="submit">Create store</button>
+            </form>
+          </section>
+
+          <section class="surface creationSurface">
+            <div class="sectionHeader">
+              <div>
+                <p class="eyebrow">Catalog</p>
+                <h2>Inventory and services</h2>
+              </div>
+            </div>
+
+            <div class="catalogForms">
+              <form id="productForm" class="formBlock">
+                <h3 id="products">Add product</h3>
+                <label>
+                  Product name
+                  <input name="name" placeholder="Product name" value="Gift Box" required />
+                </label>
+                <label>
+                  Price
+                  <input name="price" type="number" min="0" step="0.001" value="12" required />
+                </label>
+                <label>
+                  Stock
+                  <input name="stock" type="number" min="0" value="20" required />
+                </label>
+                <button type="submit">Add product</button>
+              </form>
+
+              <form id="serviceForm" class="formBlock">
+                <h3 id="services">Add service</h3>
+                <label>
+                  Service name
+                  <input name="name" placeholder="Service name" value="Gift wrapping" required />
+                </label>
+                <label>
+                  Duration
+                  <select name="durationMinutes">
+                    <option value="30">30 min</option>
+                    <option value="60">1 hour</option>
+                    <option value="120">2 hours</option>
+                  </select>
+                </label>
+                <label>
+                  Price
+                  <input name="price" type="number" min="0" step="0.001" value="5" required />
+                </label>
+                <button type="submit">Add service</button>
+              </form>
+            </div>
+          </section>
         </div>
 
-        <div class="split authSplit">
-          <form id="registerForm" class="form compact">
-            <h3>Register owner</h3>
-            <input name="fullName" placeholder="Full name" value="Dhia Kridis" required />
-            <input name="email" type="email" placeholder="Email" value="dhia@example.com" required />
-            <input name="password" type="password" placeholder="Password" value="password123" required />
-            <button type="submit">Register</button>
-          </form>
+        <section class="storefrontSurface" aria-label="Customer storefront preview">
+          <div class="previewChrome">
+            <span></span>
+            <span></span>
+            <span></span>
+            <strong>store.buznissy.com</strong>
+          </div>
 
-          <form id="loginForm" class="form compact">
-            <h3>Login owner</h3>
-            <input name="email" type="email" placeholder="Email" value="dhia@example.com" required />
-            <input name="password" type="password" placeholder="Password" value="password123" required />
-            <button type="submit">Login</button>
-          </form>
-        </div>
-      </section>
+          <div class="storeHero">
+            <div>
+              <p class="eyebrow">Storefront preview</p>
+              <h2 id="storeName">Create a store to preview it</h2>
+              <p id="storeDescription">Your customer-facing store appears here.</p>
+            </div>
+            <button id="mockCheckout" type="button">Mock checkout</button>
+          </div>
 
-      <section class="panel">
-        <div class="panelHeader">
-          <h2>Owner Workspace</h2>
-          <span>Create store, products, and services</span>
-        </div>
+          <div class="previewGrid">
+            <section>
+              <div class="sectionHeader compactHeader">
+                <h3>Products</h3>
+                <span id="productCount">0 items</span>
+              </div>
+              <div class="itemGrid" id="productList"></div>
+            </section>
 
-        <form id="storeForm" class="form">
-          <label>
-            Store name
-            <input name="name" value="Al Noor Gifts" required />
-          </label>
-          <label>
-            Category
-            <select name="category">
-              <option value="products">Products</option>
-              <option value="services">Services</option>
-              <option value="both">Both</option>
-            </select>
-          </label>
-          <label>
-            Description
-            <textarea name="description">Gifts and handmade items from Oman</textarea>
-          </label>
-          <button type="submit">Create store</button>
-        </form>
+            <section id="checkout">
+              <div class="sectionHeader compactHeader">
+                <h3>Services</h3>
+                <span id="serviceCount">0 items</span>
+              </div>
+              <div class="itemGrid" id="serviceList"></div>
+            </section>
+          </div>
 
-        <div class="split">
-          <form id="productForm" class="form compact">
-            <h3>Add product</h3>
-            <input name="name" placeholder="Product name" value="Gift Box" required />
-            <input name="price" type="number" min="0" step="0.001" value="12" required />
-            <input name="stock" type="number" min="0" value="20" required />
-            <button type="submit">Add product</button>
-          </form>
-
-          <form id="serviceForm" class="form compact">
-            <h3>Add service</h3>
-            <input name="name" placeholder="Service name" value="Gift wrapping" required />
-            <select name="durationMinutes">
-              <option value="30">30 min</option>
-              <option value="60">1 hour</option>
-              <option value="120">2 hours</option>
-            </select>
-            <input name="price" type="number" min="0" step="0.001" value="5" required />
-            <button type="submit">Add service</button>
-          </form>
-        </div>
-      </section>
-
-      <section class="panel storefront">
-        <div class="panelHeader">
-          <h2>Customer Storefront</h2>
-          <span id="storeSlug">No store yet</span>
-        </div>
-
-        <div class="hero">
-          <p class="eyebrow">Featured store</p>
-          <h2 id="storeName">Create a store to preview it</h2>
-          <p id="storeDescription">The customer storefront will appear here.</p>
-        </div>
-
-        <h3>Products</h3>
-        <div class="grid" id="products"></div>
-
-        <h3>Services</h3>
-        <div class="grid" id="services"></div>
-
-        <div class="checkout">
-          <button id="mockCheckout">Mock checkout</button>
-          <p id="checkoutResult">Payment is intentionally mocked for this MVP stage.</p>
-        </div>
-      </section>
-    </main>
+          <p class="toast" id="checkoutResult">Ready</p>
+        </section>
+      </main>
+    </div>
 
     <script src="/app.js"></script>
   </body>
